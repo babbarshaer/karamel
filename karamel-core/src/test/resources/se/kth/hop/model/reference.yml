@@ -2,9 +2,10 @@ name: ReferenceYaml                                                             
 ec2:                                                                            #Amazon Ec2 provider, other alternatives are 'vagrant' and 'baremetal' 
     type: m1.small
     image: ami-0307ce74
-    region: eu-west-1
+    region: eu-west-1c
     username: ubuntu 
     price: 0.1
+    subnetId: subnet-223a8055
 
 cookbooks:                                                                      #Github repos for cookbooks, if one cookbook is not defined here it will be looked up in default git repo (https://www.github.com/hopstart/<cookbook_name>-chef)
   hopagent:                                                                     #'name' is an alias used in the yaml

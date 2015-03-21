@@ -59,6 +59,7 @@ public class Settings {
   public static final String SCRIPT_PATH_INSTALL_RUBY_CHEF_BERKSHELF = SCRIPT_PATH_ROOT + SCRIPT_NAME_INSTALL_RUBY_CHEF_BERKSHELF;
   public static final String SCRIPT_PATH_MAKE_SOLO_RB = SCRIPT_PATH_ROOT + "make_solo_rb.sc";
   public static final String SCRIPT_PATH_RUN_RECIPE = SCRIPT_PATH_ROOT + "run_recipe.sc";
+  public static final String SCRIPT_PATH_DOWNLOAD_RESULTS = SCRIPT_PATH_ROOT + "download_results.sc";
 
   //Providers 
   public static final String PROVIDER_EC2_DEFAULT_TYPE = InstanceType.M1_MEDIUM;
@@ -66,6 +67,7 @@ public class Settings {
   //  public static final String PROVIDER_EC2_DEFAULT_IMAGE = "ami-0307ce74"; //12.04  "ami-896c96fe"; // 14.04
   public static final String PROVIDER_EC2_DEFAULT_IMAGE = "ami-0307ce74"; //12.04  "ami-896c96fe"; // 14.04
   public static final String PROVIDER_EC2_DEFAULT_USERNAME = "ubuntu";
+//  public static final String PROVIDER_EC2_DEFAULT_SUBNET_ID = "";
   public static final String PROVIDER_BAREMETAL_DEFAULT_USERNAME = "root";
 
   public static final String USER_HOME = System.getProperty("user.home");

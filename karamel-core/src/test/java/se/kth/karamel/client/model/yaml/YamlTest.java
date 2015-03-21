@@ -40,6 +40,7 @@ public class YamlTest {
     assertEquals("eu-west-1", provider.getRegion());
     assertEquals("ubuntu", provider.getUsername());
     assertEquals(0.1f, provider.getPrice());
+//    assertEquals("subnet1", provider.getSubnetId());
 
     assertEquals(cluster.getAttr("mysql/user"), "admin");
     assertEquals(cluster.getAttr("ndb/ndbapi/public_ips"), "$ndb.public_ips");

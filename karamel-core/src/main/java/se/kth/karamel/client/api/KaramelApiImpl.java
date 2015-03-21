@@ -22,6 +22,7 @@ import se.kth.karamel.backend.running.model.serializers.MachineEntitySerializer;
 import se.kth.karamel.backend.running.model.serializers.ShellCommandSerializer;
 import se.kth.karamel.backend.running.model.serializers.DefaultTaskSerializer;
 import se.kth.karamel.backend.running.model.tasks.AptGetEssentialsTask;
+import se.kth.karamel.backend.running.model.tasks.CollectResultsTask;
 import se.kth.karamel.backend.running.model.tasks.InstallBerkshelfTask;
 import se.kth.karamel.backend.running.model.tasks.MakeSoloRbTask;
 import se.kth.karamel.backend.running.model.tasks.RunRecipeTask;
@@ -101,6 +102,7 @@ public class KaramelApiImpl implements KaramelApi {
             registerTypeAdapter(GroupEntity.class, new GroupEntitySerializer()).
             registerTypeAdapter(ShellCommand.class, new ShellCommandSerializer()).
             registerTypeAdapter(RunRecipeTask.class, new DefaultTaskSerializer()).
+            registerTypeAdapter(CollectResultsTask.class, new DefaultTaskSerializer()).
             registerTypeAdapter(MakeSoloRbTask.class, new DefaultTaskSerializer()).
             registerTypeAdapter(VendorCookbookTask.class, new DefaultTaskSerializer()).
             registerTypeAdapter(AptGetEssentialsTask.class, new DefaultTaskSerializer()).

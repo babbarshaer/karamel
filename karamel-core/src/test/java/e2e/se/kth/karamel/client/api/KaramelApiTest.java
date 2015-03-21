@@ -28,7 +28,7 @@ public class KaramelApiTest {
 
 //  @Test
   public void testGetCookbookDetails() throws KaramelException {
-    String json = api.getCookbookDetails("https://github.com/hopstart/hadoop-chef", false);
+    String json = api.getCookbookDetails("https://github.com/hopshadoop/apache-hadoop-chef", false);
     assertFalse(json.isEmpty());
   }
 
@@ -49,7 +49,7 @@ public class KaramelApiTest {
     System.out.println(convertedYaml);
   }
 
-  @Test
+  @Test 
   public void testEndToEnd() throws KaramelException, IOException, InterruptedException {
     String clusterName = "spark";
     String ymlString = Resources.toString(Resources.getResource("se/kth/hop/model/spark.yml"), Charsets.UTF_8);

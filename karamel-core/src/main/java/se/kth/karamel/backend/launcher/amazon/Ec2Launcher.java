@@ -14,7 +14,6 @@ import org.jclouds.aws.AWSResponseException;
 import org.jclouds.aws.ec2.compute.AWSEC2TemplateOptions;
 import org.jclouds.compute.RunNodesException;
 import org.jclouds.compute.domain.NodeMetadata;
-import org.jclouds.compute.domain.Template;
 import org.jclouds.compute.domain.TemplateBuilder;
 import org.jclouds.compute.predicates.NodePredicates;
 import org.jclouds.ec2.compute.options.EC2TemplateOptions;
@@ -127,10 +126,17 @@ public final class Ec2Launcher {
     if (sshKeyPair == null) {
       throw new KaramelException("Choose your ssh keypair first :-| ");
     }
+
     AWSEC2TemplateOptions options = context.getComputeService().templateOptions().as(AWSEC2TemplateOptions.class);
     if (ec2.getPrice() != null) {
       options.spotPrice(ec2.getPrice());
     }
+
+//    if (ec2.getSubnetId() != null) {
+//        logger.info("Setting subnetId: " + ec2.getSubnetId());
+//        options.subnetId(ec2.getSubnetId());
+//    }
+    
     HashSet<String> regions = new HashSet();
     if (!regions.contains(ec2.getRegion())) {
       Set<KeyPair> keypairs = context.getKeypairApi().describeKeyPairsInRegion(ec2.getRegion(), new String[]{keyPairName});

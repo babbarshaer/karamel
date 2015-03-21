@@ -1,0 +1,28 @@
+name: MySqlClusterBig
+ec2:
+    type: c3.8xlarge
+    region: eu-west-1
+
+cookbooks:                                                                      
+  ndb:
+    github: "hopshadoop/ndb-chef"
+    branch: "master"
+
+attrs:
+    ndb:
+       version: "7.4.4"
+    
+groups: 
+  datanodesbig:
+    size: 8
+    recipes: 
+        - ndb::ndbd
+  serverbig:
+    size: 1 
+    recipes: 
+        - ndb::mysqld
+        - ndb::memcached
+        - ndb::mgmd
+
+
+

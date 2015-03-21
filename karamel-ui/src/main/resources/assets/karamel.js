@@ -275,12 +275,14 @@ function EC2Provider() {
     this.price = null;
     this.accountId = null;
     this.accountKey = null;
+    this.subnetId = null;
 
     this.load = function (other) {
         this.type = other.type || null;
         this.image = other.image || null;
         this.region = other.region || null;
         this.price = other.price || null;
+        this.subnetId = other.subnetId || null;
     };
     this.copy = function(other){
         
@@ -288,6 +290,7 @@ function EC2Provider() {
         this.image = other.image || null;
         this.region = other.region || null;
         this.price = other.price || null;
+        this.subnetId = other.subnetId || null;
         this.accountId = other.accountId || null;
         this.accountKey = other.accountKey || null;
     };
