@@ -5,7 +5,6 @@
  */
 package se.kth.karamel.client.model;
 
-import se.kth.karamel.common.Settings;
 import se.kth.karamel.common.exception.KaramelException;
 import se.kth.karamel.cookbook.metadata.GithubUrls;
 

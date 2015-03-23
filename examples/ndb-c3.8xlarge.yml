@@ -2,6 +2,7 @@ name: MySqlClusterBig
 ec2:
     type: c3.8xlarge
     region: eu-west-1
+    image: ami-234ecc54
 
 cookbooks:                                                                      
   ndb:

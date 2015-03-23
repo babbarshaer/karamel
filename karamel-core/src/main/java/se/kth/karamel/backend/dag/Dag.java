@@ -39,7 +39,9 @@ public class Dag {
           .create();
   private final Map<Runnable, Set<? extends Runnable>> nonEditableDeps = new HashMap<>();
   private final Map<Runnable, Throwable> errors = new HashMap<>();
-
+  
+  // TODO: Put global chef attribute values here?
+  // Attrs can then be updated by returning results from recipes.
   public enum Status {
 
     /**
