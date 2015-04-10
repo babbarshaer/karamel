@@ -156,7 +156,8 @@ public class ClusterManager implements Runnable {
           if (ec2Launcher == null) {
             ec2Launcher = new Ec2Launcher(clusterContext.getEc2Context(), clusterContext.getSshKeyPair());
           }
-          ec2Launcher.cleanup(group.getName(), ec2.getRegion());
+          JsonGroup jg = UserClusterDataExtractor.findGroup(definition, group.getName());
+          ec2Launcher.cleanup(group.getName(), jg.getSize(), ec2.getRegion());
           if (purging) {
             group.setMachines(Collections.EMPTY_LIST);
             group.setPhase(GroupEntity.GroupPhase.NONE);
@@ -164,6 +165,7 @@ public class ClusterManager implements Runnable {
             group.setPhase(GroupEntity.GroupPhase.PRECLEANED);
           }
         } catch (Exception ex) {
+          logger.error("", ex);
           group.setFailed(true);
           runtime.setFailed(true);
         }
@@ -197,7 +199,8 @@ public class ClusterManager implements Runnable {
             if (ec2Launcher == null) {
               ec2Launcher = new Ec2Launcher(clusterContext.getEc2Context(), clusterContext.getSshKeyPair());
             }
-            ec2Launcher.createSecurityGroup(definition.getName(), group.getName(), ec2.getRegion(), ports);
+            String groupId = ec2Launcher.createSecurityGroup(definition.getName(), group.getName(), ec2.getRegion(), ports);
+            group.setId(groupId);
             group.setPhase(GroupEntity.GroupPhase.GROUPS_FORKED);
           } catch (Exception ex) {
             if (ex instanceof InterruptedException) {
@@ -285,13 +288,13 @@ public class ClusterManager implements Runnable {
         if (provider instanceof Ec2) {
           try {
             Ec2 ec2 = (Ec2) provider;
-            HashSet<String> gns = new HashSet<>();
-            gns.add(group.getName());
+            HashSet<String> gids = new HashSet<>();
+            gids.add(group.getId());
             if (ec2Launcher == null) {
               ec2Launcher = new Ec2Launcher(clusterContext.getEc2Context(), clusterContext.getSshKeyPair());
             }
             String keypairname = Settings.EC2_KEYPAIR_NAME(runtime.getName());
-            List<MachineEntity> mcs = ec2Launcher.forkMachines(keypairname, group, gns, Integer.valueOf(definedGroup.getSize()), ec2);
+            List<MachineEntity> mcs = ec2Launcher.forkMachines(keypairname, group, gids, Integer.valueOf(definedGroup.getSize()), ec2);
             group.setMachines(mcs);
             machinesMonitor.addMachines(mcs);
             group.setPhase(GroupEntity.GroupPhase.MACHINES_FORKED);

@@ -6,7 +6,6 @@ ec2:
 cookbooks:                                                                      
   hadoop: 
     github: "hopshadoop/apache-hadoop-chef"
-    version: "v0.1"
   spark: 
     github: "hopshadoop/spark-chef"
     branch: "master"
